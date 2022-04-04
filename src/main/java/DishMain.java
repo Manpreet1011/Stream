@@ -44,12 +44,17 @@ public class DishMain {
         System.out.println("Minimum price dish");
         Optional<Double> min = dish.stream().map(d -> d.getCost()).min(Comparator.naturalOrder());
         System.out.println(min);
+        Map<DishType, List<Dish>> collect = dish.stream().collect(Collectors.groupingBy(d -> d.getDishType()));
+        System.out.println(collect);
+        List<String> collect1 = dish.stream().flatMap(d -> d.getIngredients().stream()).distinct().collect(Collectors.toList());
+        System.out.println(collect1);
         //        dishes.stream().filter(d -> d.getDishType() == DishType.NON_VEG).forEach(System.out::println);
 //        Optional<Double> max = dishes.stream().map(d -> d.getCost()).max(Comparator.naturalOrder());
 //        max.ifPresent(System.out::println);
 //        List<Integer> nums = List.of(1, 2, 4, 54, 34, 21);
 //        System.out.println(nums.stream().reduce(0, (a, b) -> a + b));
-
+            List<Integer> nums=List.of(1,3,2,11,23,21,43,98);
+        System.out.println(nums.stream().reduce(0,Integer::sum));
 
     }
 }
